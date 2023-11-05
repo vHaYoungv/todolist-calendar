@@ -10,7 +10,7 @@
         <div>
             <div>
                 <button type="button"><</button>
-                <input type="number" id="year" value="2023" style="width:100px"/>
+                <input type="number" id="year" style="width:100px"/>
                 <select id="month" style="width:100px">
                     <option value="1">1월</option>
                     <option value="2">2월</option>
@@ -40,14 +40,78 @@
                         <th>토</th>
                     </tr>
                 </thead>
-                <tbody>
-    
+                <tbody id="tb_body">
                 </tbody>
             </table>
         </div>
     </div>
 
         
-    
+    <script>
+        function checkLeapYear(year) { //윤년 체크 
+            if (year%400 == 0) {
+                return true;
+            } else if(year%100 == 0) {
+                return false;
+            } else if(year%4 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function getFirstDayOfWeek(year, month) { //첫 날의 요일 
+            if(month<10) month = "0" + month;
+            return (new Date(year+"-"+month+"-01")).getDay();
+        }
+
+        function changeYearMonth(year, month) { //년, 월에 맞는 달력 불러오기 
+            let month_day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            if (month == 2) {
+                if(checkLeapYear(year)) month_day[1] = 29;
+            }
+
+            let first_day_of_week = getFirstDayOfWeek(year, month);
+
+            let arr_calendar = [];
+            for(let i=0; i<first_day_of_week; i++) { //1일 전의 날짜들은 공백
+                arr_calendar.push("");
+            }
+            for(let i=1; i<month_day[month-1]; i++) { //1일~31일의 날짜들은 숫자
+                arr_calendar.push(String(i));
+            }
+            let remain_day = 7 - (arr_calendar.length%7); //31d일 이후의 날짜들은 공백 
+            if(remain_day < 7) {
+                for(let i=0; i<remain_day; i++) {
+                    arr_calendar.push("");
+                }
+            }
+
+            renderCalendar(arr_calendar);
+        }
+
+        function renderCalendar(data) {
+            let h= [];
+            for(let i=0; i<data.length; i++) {
+                if(i==0) {
+                    h.push('<tr>');
+                }else if(i%7 == 0) {
+                    h.push('</tr>');
+                    h.push('<tr>');
+                }
+                h.push('<td>' + data[i] + '</td>');
+            }
+            h.push('</tr>');
+            document.querySelector("#tb_body").innerHTML = h.join('');
+        }
+
+        let current_year = (new Date()).getFullYear();
+        let current_month = (new Date()).getMonth() + 1;
+        document.querySelector("#year").value = current_year 
+        document.querySelector("#month").value = current_month
+
+        changeYearMonth(current_year,current_month)
+    </script>
 </body>
 </html>
