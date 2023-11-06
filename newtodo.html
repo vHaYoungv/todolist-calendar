@@ -45,7 +45,6 @@
         <button id="save_btn">저장</button>
     </div>
     <script>
-        localStorage.setItem('2023-11-06', [JSON.stringify({id:-1, date:'2023-11-06', time:15, detail:'자바스크립트 공부하기'})]) //초기값 , 나중에 삭제
         const url = new URL(location.href);
         let todo_id = 0; 
         if (localStorage.getItem('todo_id')) {
@@ -63,19 +62,18 @@
 
         saveButton.addEventListener("click",()=>{ //
 
-            const new_todo = JSON.stringify({id: todo_id, date:dateElement.value, time:timeElement.value, detail:detailElement.value})
-            
+            const new_todo = {id: todo_id, title:titleElement.value, date:dateElement.value, time:timeElement.value, detail:detailElement.value};
+            let todo_arr = []
             if (localStorage.getItem(dateElement.value)){
-                todo_arr = localStorage.getItem(dateElement.value);
-            } else {
-                todo_arr = []
-            }
+                var temp = localStorage.getItem(dateElement.value);
+                todo_arr = JSON.parse(temp);
+            } 
             
-            todo_arr = todo_arr + [new_todo]
-            localStorage.setItem(dateElement.value, todo_arr)
-            localStorage.setItem('todo_id', parseInt(todo_id)+parseInt(1))
+            todo_arr.push(new_todo);
+            localStorage.setItem(dateElement.value, JSON.stringify(todo_arr));
+            localStorage.setItem('todo_id', parseInt(todo_id)+parseInt(1));
 
-            location.href = 'index.html'
+            location.href = 'index.html';
         })
     </script>
 </body>
