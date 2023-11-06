@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="container" >
-        <input type="text" id="input_date" />
+        <label>포커스</label>
+        <input type="text" id="input_date" style="width:100px"/>
         <div>
             <div>
                 <button type="button" onclick="changeMonth(-1)"><</button>
@@ -81,7 +82,7 @@
             for(let i=0; i<first_day_of_week; i++) { //1일 전의 날짜들은 공백
                 arr_calendar.push("");
             }
-            for(let i=1; i<month_day[month-1]; i++) { //1일~31일의 날짜들은 숫자
+            for(let i=1; i<=month_day[month-1]; i++) { //1일~31일의 날짜들은 숫자
                 arr_calendar.push(String(i));
             }
             let remain_day = 7 - (arr_calendar.length%7); //31d일 이후의 날짜들은 공백 
@@ -164,7 +165,6 @@
             changeYearMonth(current_year,current_month)
         }
 
-        // localStorage.clear();
         let current_year = (new Date()).getFullYear();
         let current_month = (new Date()).getMonth() + 1;
         let current_day = (new Date()).getDate();
@@ -173,6 +173,36 @@
         changeYearMonth(current_year,current_month)
         setDate(current_day);
 
+        // 키보드 이벤트: focus 이동 및 새로운 To do 생성 
+        const body = document.body;
+        body.addEventListener("keydown", (e)=> {
+            let month_day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            current_focus = document.querySelector("#input_date").value
+            focus_day = parseInt(current_focus.substr(-2, 2));
+            if (e.key=="ArrowRight") { //ArrowRight: 포커스 오른쪽 이동
+                focus_day += 1;
+                if (focus_day < month_day[current_month-1]) {
+                    setDate(focus_day);
+                }
+            } else if (e.key=="ArrowLeft") { //ArrowLeft: 포커스 왼쪽 이동
+                focus_day -= 1;
+                if (0 < focus_day) {
+                    setDate(focus_day);
+                }
+            } else if (e.key=="ArrowUp") { //ArrowUp: 포커스 위쪽 이동
+                focus_day -= 7;
+                if (0 < focus_day) {
+                    setDate(focus_day);
+                }
+            } else if (e.key=="ArrowDown") { //ArrowDown: 포커스 아래쪽 이동 
+                focus_day += 7;
+                if (focus_day < month_day[current_month-1]) {
+                    setDate(focus_day);
+                }
+            } else if (e.key=="Enter") { //Enter: 새 To do 생성 
+                location.href = 'newtodo.html?todo_date=' + current_focus;
+            } 
+        });
     </script>
 
 </body>
