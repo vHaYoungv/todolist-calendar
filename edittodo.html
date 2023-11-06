@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="todo_body">
+        
+    </div>
+    <script>
+        function renderTodo(date, id){
+            let h = [];
+            let arr_current_todo = [];
+            if (localStorage.getItem(date)) {
+                arr_current_todo = JSON.parse(localStorage.getItem(date));
+            }
+            for (var j=0; j<arr_current_todo.length; j++){
+                if (arr_current_todo[j].id == id) i = j;
+            }
+            h.push('<div style ="padding: 10px; width: 500px; border:1px solid black">');
+            h.push('<div>');
+            h.push('<input id="edit_title" value=' + arr_current_todo[i].title + '>');
+            h.push('</div>');
+            h.push('<div>');
+            h.push('<input id="edit_date" value=' + arr_current_todo[i].date + '>');
+            h.push('</div>');
+            h.push('<div>');
+            h.push('<input id="edit_time_select" value=' + arr_current_todo[i].time + '>');
+            h.push('</div>');
+            h.push('<div>');
+            h.push('<input id="edit_detail" value=' + arr_current_todo[i].detail + '>');
+            h.push('</div>');
+            h.push('<div>');
+            h.push('<button id="edit_btn">수정</button>');
+            h.push('</div>');
+            h.push('</div>');
+            document.querySelector("#todo_body").innerHTML = h.join('');
+        }
+        const url = new URL(location.href);
+        const todo_id = url.searchParams.get("todo_id");
+        const todo_date = url.searchParams.get("todo_date");
+        renderTodo(todo_date, todo_id);
+
+        const titleElement = document.getElementById("edit_title");  
+        const dateElement = document.getElementById("edit_date");
+        const timeElement = document.getElementById("edit_time_select");
+        const detailElement = document.getElementById("edit_detail");
+        const editButton = document.getElementById("edit_btn");
+        
+        dateElement.value = todo_date;
+
+        editButton.addEventListener("click",()=>{ //
+            let pre_todo_arr = []
+            if (localStorage.getItem(todo_date)){ //수정 전 날짜에 해당하는 배열에서, 해당 id 값의 객체를 삭제 
+                let temp1 = localStorage.getItem(todo_date);
+                pre_todo_arr = JSON.parse(temp1);
+
+                for(var i=0; i<pre_todo_arr.length; i++){
+                    if(pre_todo_arr[i].id == todo_id) {
+                        pre_todo_arr.splice(i,   1);
+                        localStorage.setItem(todo_date, JSON.stringify(pre_todo_arr));
+                        break
+                    }
+                }
+            } 
+            const edit_todo = {id: todo_id, title:titleElement.value, date:dateElement.value, time:timeElement.value, detail:detailElement.value};
+            let todo_arr = []
+            if (localStorage.getItem(dateElement.value)){
+                let temp2 = localStorage.getItem(dateElement.value);
+                todo_arr = JSON.parse(temp2);
+            } 
+            todo_arr.push(edit_todo);
+            localStorage.setItem(dateElement.value, JSON.stringify(todo_arr));
+            location.href = 'readtodo.html?todo_date=' + todo_date;
+        })
+    </script>
+</body>
+</html>
