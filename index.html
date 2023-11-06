@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <input type="text" id="input_date"/>
+        <input type="text" id="input_date" />
         <div>
             <div>
                 <button type="button" onclick="changeMonth(-1)"><</button>
@@ -48,8 +48,6 @@
     </div>
 
     <script>
-        var todo_id = 0; //todo id 고유값 관리 
-
         function checkLeapYear(year) { //윤년 체크 
             if (year%400 == 0) {
                 return true;
@@ -102,7 +100,13 @@
                     h.push('</tr>');
                     h.push('<tr>');
                 }
-                h.push('<td valign="top" onclick="setDate(' + data[i] + ');" style="cursor:pointer;"> <div onclick="location.href=\'newtodo.html?todo_id=' + todo_id + '\'"id="new_todo">' + data[i] + '</div> <div>' + 'todo' +'</div></td>');
+                
+                let select_date = data[i];
+                if (data[i]<10) select_date = "0"+select_date;
+            
+                h.push('<td valign="top" onclick="setDate(' + data[i] + ');" style="cursor:pointer;"> <div onclick="location.href=\'newtodo.html?'
+                    + 'todo_date=' + current_year+'-'+current_month+'-'+select_date
+                    + '\'" id="new_todo">' + data[i] + '</div> <div>' + 'todo' +'</div></td>');
             }
             h.push('</tr>');
             document.querySelector("#tb_body").innerHTML = h.join('');
@@ -111,7 +115,7 @@
 
         function setDate(day) {
             if(day<10) day = "0" + day;
-            document.querySelector("#input_date").value = current_year + "-" + "current_month" + "-" + day
+            document.querySelector("#input_date").value = current_year + "-" + current_month + "-" + day
         }
 
         function changeYear() {
@@ -121,7 +125,7 @@
 
         function changeMonth(diff) {
             if(diff == undefined) {
-                current_month = parseInt(document.querySelector("#month").val());
+                current_month = parseInt(document.querySelector("#month").value);
             }else{
                 current_month = current_month + diff;
                 if(current_month == 0){

@@ -36,15 +36,20 @@ Folder structure
 - [X] 년, 월 선택 
 - [X] 선택한 년, 월에 맞는 달력 표시
 - [X] <, > 버튼 누를 때 월 감소, 증가
-- [ ] 해당 일자에 To do 등록 시 표시 
-  - [ ] To do 객체: {id: [배열]} 형식의 객체, 배열 
-  
+- [X] 해당 일자에 To do 등록
+- [ ] 해당 일자에 To do가 있으면, 달력에 제목 표시
+- [ ] 표시된 To do를 누르면 상세 페이지로 이동 
+- [ ] 상세 페이지에서 수정을 누르면 localStorage에서 Todo 수정 
+- [ ] 상세 페이지에서 삭제를 누르면 localStorage에서 Todo 삭제
+
 # To do 기능
 - [X] 날짜 클릭 하면 할 일 등록 화면 불러오기
-- [ ] 할 일 등록 화면 구성
-  - [ ] 타이틀 : todo_title
-  - [ ] 날짜, 시간 : todo_date, todo_time
-  - [ ] 설명 : todo_detail
-- [ ] reload 시에도 데이터 유지 
-  - [ ] localStorage 활용 
+- [X] 할 일 등록 화면 구성
+- - [X] To do 객체 ex: {id: 1, date:'2023-11-01', time: 15, detail: '자바스크립트 공부하기'}
+  - [X] 타이틀 : todo_title
+  - [X] 날짜, 시간 : todo_date, todo_time
+  - [X] 설명 : todo_detail
+- [X] reload 시에도 데이터 유지 
+  - [X] localStorage 활용
+  
 

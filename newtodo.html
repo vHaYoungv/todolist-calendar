@@ -45,14 +45,37 @@
         <button id="save_btn">저장</button>
     </div>
     <script>
-        const titleElement = document.getElementById("new_title");
-        const dateElement = document.getElementById("new_date")
+        localStorage.setItem('2023-11-06', [JSON.stringify({id:-1, date:'2023-11-06', time:15, detail:'자바스크립트 공부하기'})]) //초기값 , 나중에 삭제
+        const url = new URL(location.href);
+        let todo_id = 0; 
+        if (localStorage.getItem('todo_id')) {
+            todo_id = localStorage.getItem('todo_id');
+        }
+        const todo_date = url.searchParams.get("todo_date");
+
+        const titleElement = document.getElementById("new_title");  
+        const dateElement = document.getElementById("new_date");
         const timeElement = document.getElementById("new_time_select");
-        const detailElement = document.getElementById("new_detail_select");
+        const detailElement = document.getElementById("new_detail");
         const saveButton = document.getElementById("save_btn");
+        
+        dateElement.value = todo_date;
 
         saveButton.addEventListener("click",()=>{ //
-            localStorage.setItem();
+
+            const new_todo = JSON.stringify({id: todo_id, date:dateElement.value, time:timeElement.value, detail:detailElement.value})
+            
+            if (localStorage.getItem(dateElement.value)){
+                todo_arr = localStorage.getItem(dateElement.value);
+            } else {
+                todo_arr = []
+            }
+            
+            todo_arr = todo_arr + [new_todo]
+            localStorage.setItem(dateElement.value, todo_arr)
+            localStorage.setItem('todo_id', parseInt(todo_id)+parseInt(1))
+
+            location.href = 'index.html'
         })
     </script>
 </body>
