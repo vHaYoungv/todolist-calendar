@@ -179,6 +179,7 @@
             let month_day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
             current_focus = document.querySelector("#input_date").value
             focus_day = parseInt(current_focus.substr(-2, 2));
+            alert(e.key);
             if (e.key=="ArrowRight") { //ArrowRight: 포커스 오른쪽 이동
                 focus_day += 1;
                 if (focus_day < month_day[current_month-1]) {
@@ -201,7 +202,9 @@
                 }
             } else if (e.key=="Enter") { //Enter: 새 To do 생성 
                 location.href = 'newtodo.html?todo_date=' + current_focus;
-            } 
+            } else if (e.key="Backspace") { //Backspace: 이전 페이지로 이동
+                history.back();
+            }
         });
     </script>
 
