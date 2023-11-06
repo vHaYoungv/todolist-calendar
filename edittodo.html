@@ -51,7 +51,7 @@
         
         dateElement.value = todo_date;
 
-        editButton.addEventListener("click",()=>{ //
+        editButton.addEventListener("click",()=>{ 
             let pre_todo_arr = []
             if (localStorage.getItem(todo_date)){ //수정 전 날짜에 해당하는 배열에서, 해당 id 값의 객체를 삭제 
                 let temp1 = localStorage.getItem(todo_date);
