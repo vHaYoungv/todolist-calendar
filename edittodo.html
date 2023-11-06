@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="css/style.css" rel="stylesheet"  type="text/css">
+    <style>
+    </style>
 </head>
 <body>
     <div id="todo_body">
@@ -19,20 +22,24 @@
             for (var j=0; j<arr_current_todo.length; j++){
                 if (arr_current_todo[j].id == id) i = j;
             }
-            h.push('<div style ="padding: 10px; width: 500px; border:1px solid black">');
-            h.push('<div>');
-            h.push('<input id="edit_title" value=' + arr_current_todo[i].title + '>');
+            h.push('<div style ="padding: 10px; width: 500px; border:2px solid black">');
+            h.push('<div style = "padding:10px;">');
+            h.push('<label>제목</label><br>')
+            h.push('<input id="edit_title" value=' + arr_current_todo[i].title + ' style= "width:450px">');
             h.push('</div>');
-            h.push('<div>');
+            h.push('<div style = "padding:10px;">');
+            h.push('<label>날짜</label><br>')
             h.push('<input id="edit_date" value=' + arr_current_todo[i].date + '>');
             h.push('</div>');
-            h.push('<div>');
+            h.push('<div style = "padding:10px;">');
+            h.push('<label>시간</label><br>')
             h.push('<input id="edit_time_select" value=' + arr_current_todo[i].time + '>');
             h.push('</div>');
-            h.push('<div>');
-            h.push('<input id="edit_detail" value=' + arr_current_todo[i].detail + '>');
+            h.push('<div style = "padding:10px;">');
+            h.push('<label>내용</label><br>')
+            h.push('<textarea id="edit_detail" value=' + arr_current_todo[i].detail + ' style="vertical-align:top;width:450px; height:300px"></textarea>');
             h.push('</div>');
-            h.push('<div>');
+            h.push('<div style = "padding:10px;">');
             h.push('<button id="edit_btn">수정</button>');
             h.push('</div>');
             h.push('</div>');

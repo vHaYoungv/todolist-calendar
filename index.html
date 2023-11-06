@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>todolist-calendar</title>
+    <link href="css/style.css" rel="stylesheet"  type="text/css">
+    <style>
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" >
         <input type="text" id="input_date" />
         <div>
             <div>
@@ -29,9 +32,9 @@
                 <button type="button" onclick="changeMonth(1)">></button>
             </div>
             
-            <table border="1" width="1280" height="720">
+            <table border="1" width="1050px" height="520px">
                 <thead>
-                    <tr>
+                    <tr height="20px">
                         <th>일</th>
                         <th>월</th>
                         <th>화</th>
@@ -110,12 +113,12 @@
                 }
 
 
-                h.push('<td valign="top" onclick="setDate(' + data[i] + ');" style="cursor:pointer;"> <div onclick="location.href=\'newtodo.html?'
+                h.push('<td height="100px"; valign="top" onclick="setDate(' + data[i] + ');"> <div style="cursor:pointer;" onclick="location.href=\'newtodo.html?'
                     + 'todo_date=' + current_date
                     + '\'" id="new_todo">' + data[i] + '</div>');
                 // todo 있으면 todo 가져오기 
                 for (var j=0; j<arr_current_todo.length; j++) {
-                    h.push('<div onclick="location.href=\'readtodo.html?'
+                    h.push('<div style="cursor:pointer;" onclick="location.href=\'readtodo.html?'
                     + 'todo_date=' + current_date
                     + '\'">'
                         + arr_current_todo[j].title
@@ -164,9 +167,11 @@
         // localStorage.clear();
         let current_year = (new Date()).getFullYear();
         let current_month = (new Date()).getMonth() + 1;
+        let current_day = (new Date()).getDate();
         document.querySelector("#year").value = current_year 
         document.querySelector("#month").value = current_month
         changeYearMonth(current_year,current_month)
+        setDate(current_day);
 
     </script>
 
