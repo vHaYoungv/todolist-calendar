@@ -115,7 +115,9 @@
                     + '\'" id="new_todo">' + data[i] + '</div>');
                 // todo 있으면 todo 가져오기 
                 for (var j=0; j<arr_current_todo.length; j++) {
-                    h.push('<div>'
+                    h.push('<div onclick="location.href=\'readtodo.html?'
+                    + 'todo_date=' + current_date
+                    + '\'">'
                         + arr_current_todo[j].title
                         + '</div>');
                 }

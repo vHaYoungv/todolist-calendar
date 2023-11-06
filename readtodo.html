@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="todo_body">
+        
+    </div>
+    <script>
+        function renderTodo(date){
+            let h = [];
+            let arr_current_todo = [];
+            if (localStorage.getItem(date)) {
+                arr_current_todo = JSON.parse(localStorage.getItem(date));
+            }
+            for(let i=0; i<arr_current_todo.length; i++){
+                h.push('<div style ="padding: 10px; width: 500px; border:1px solid black">');
+                h.push('<div>');
+                h.push('<h1>' + arr_current_todo[i].title + '</h1>');
+                h.push('</div>');
+                h.push('<div>');
+                h.push('<h4>' + arr_current_todo[i].date + '</h4>');
+                h.push('</div>');
+                h.push('<div>');
+                h.push('<h4>' + arr_current_todo[i].time + '</h4>');
+                h.push('</div>');
+                h.push('<div>');
+                h.push('<h3>' + arr_current_todo[i].detail + '</h3>');
+                h.push('</div>');
+                h.push('</div>');
+            }
+            document.querySelector("#todo_body").innerHTML = h.join('');
+        }
+        const url = new URL(location.href);
+        const todo_date = url.searchParams.get("todo_date");
+        renderTodo(todo_date);
+    </script>
+</body>
+</html>

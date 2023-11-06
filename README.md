@@ -38,7 +38,7 @@ Folder structure
 - [X] <, > 버튼 누를 때 월 감소, 증가
 - [X] 해당 일자에 To do 등록
 - [X] 해당 일자에 To do가 있으면, 달력에 제목 표시
-- [ ] 표시된 To do를 누르면 상세 페이지로 이동 
+- [X] 표시된 To do를 누르면 상세 페이지로 이동 
 - [ ] 상세 페이지에서 수정을 누르면 localStorage에서 Todo 수정 
 - [ ] 상세 페이지에서 삭제를 누르면 localStorage에서 Todo 삭제
 
