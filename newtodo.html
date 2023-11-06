@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <input type="text" id="new_title" placeholder="제목을 입력하세요">
+        </div>
+        <div>
+            <input type="text" id="new_date"/>
+            <select id="new_time_select" style="width:100px">
+                <option value="0">00:00 AM</option>
+                <option value="1">01:00 AM</option>
+                <option value="2">02:00 AM</option>
+                <option value="3">03:00 AM</option>
+                <option value="4">04:00 AM</option>
+                <option value="5">05:00 AM</option>
+                <option value="6">06:00 AM</option>
+                <option value="7">07:00 AM</option>
+                <option value="8">08:00 AM</option>
+                <option value="9">09:00 AM</option>
+                <option value="10">10:00 AM</option>
+                <option value="11">11:00 AM</option>
+                <option value="12">12:00 PM</option>
+                <option value="13">01:00 PM</option>
+                <option value="14">02:00 PM</option>
+                <option value="15">03:00 PM</option>
+                <option value="16">04:00 PM</option>
+                <option value="17">05:00 PM</option>
+                <option value="18">06:00 PM</option>
+                <option value="19">07:00 PM</option>
+                <option value="20">08:00 PM</option>
+                <option value="21">09:00 PM</option>
+                <option value="22">10:00 PM</option>
+                <option value="23">11:00 PM</option>    
+            </select>
+        </div>
+        <div>
+            <textarea rows="3" id = new_detail placeholder="내용을 입력하세요"></textarea>
+        </div>
+        <button id="save_btn">저장</button>
+    </div>
+    <script>
+        const titleElement = document.getElementById("new_title");
+        const dateElement = document.getElementById("new_date")
+        const timeElement = document.getElementById("new_time_select");
+        const detailElement = document.getElementById("new_detail_select");
+        const saveButton = document.getElementById("save_btn");
+
+        saveButton.addEventListener("click",()=>{ //
+            localStorage.setItem();
+        })
+    </script>
+</body>
+</html>
